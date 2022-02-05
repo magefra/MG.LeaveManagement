@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MG.LeaveManagement.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MG.LeaveManagement.Domain
 {
-    public class LeaveRequest
+    public class LeaveRequest : BaseDomainEntity
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
