@@ -13,11 +13,4 @@
     <ProjectReference Include="..\MG.LeaveManagement.Domain\MG.LeaveManagement.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feactures\LeaveAllocations\Handlers\Commands\" />
-    <Folder Include="Feactures\LeaveAllocations\Request\Commands\" />
-    <Folder Include="Feactures\LeaveRequests\Handlers\Commands\" />
-    <Folder Include="Feactures\LeaveRequests\Request\Commands\" />
-  </ItemGroup>
-
 </Project>
