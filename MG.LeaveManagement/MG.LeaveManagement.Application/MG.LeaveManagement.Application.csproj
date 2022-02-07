@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Feactures\LeaveAllocations\Handlers\Commands\" />
+    <Folder Include="Feactures\LeaveAllocations\Request\Commands\" />
+    <Folder Include="Feactures\LeaveRequests\Handlers\" />
+    <Folder Include="Feactures\LeaveRequests\Request\" />
     <Folder Include="Feactures\LeaveTypes\Handlers\Commands\" />
     <Folder Include="Feactures\LeaveTypes\Requests\Commands\" />
   </ItemGroup>
