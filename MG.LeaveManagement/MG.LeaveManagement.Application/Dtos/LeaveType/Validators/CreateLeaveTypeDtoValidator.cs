@@ -21,7 +21,8 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveType.Validators
             RuleFor(x => x.DefaultDays)
                .NotEmpty()
                .WithMessage("{PropertyName} is required")
-               .NotNull();
+               .GreaterThan(0)
+               .LessThan(100);
         }
     }
 }
