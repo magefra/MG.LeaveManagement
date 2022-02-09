@@ -16,6 +16,8 @@ namespace MG.LeaveManagement.Application.Persistence.Contracts
 
         Task<T> Update(T entity);
 
+        Task<bool> Exists(int id);
+
         Task Delete(T id);
 
     }
