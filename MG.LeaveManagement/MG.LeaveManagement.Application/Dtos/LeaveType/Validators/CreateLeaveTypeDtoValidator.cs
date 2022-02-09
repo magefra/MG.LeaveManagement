@@ -13,7 +13,15 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveType.Validators
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
-                .WithMessage("{PropertyName} is required");
+                .WithMessage("{PropertyName} is required")
+                .NotNull()
+                .MaximumLength(50)
+                .WithMessage("{PropertyName} must not exceded 50 characters");
+
+            RuleFor(x => x.DefaultDays)
+               .NotEmpty()
+               .WithMessage("{PropertyName} is required")
+               .NotNull();
         }
     }
 }
