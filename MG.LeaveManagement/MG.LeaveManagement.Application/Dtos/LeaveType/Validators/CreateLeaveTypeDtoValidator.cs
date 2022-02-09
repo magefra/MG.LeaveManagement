@@ -9,5 +9,11 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveType.Validators
 {
     public class CreateLeaveTypeDtoValidator : AbstractValidator<CreateLeaveTypeDtp>
     {
+        public CreateLeaveTypeDtoValidator()
+        {
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                .WithMessage("{PropertyName} is required");
+        }
     }
 }
