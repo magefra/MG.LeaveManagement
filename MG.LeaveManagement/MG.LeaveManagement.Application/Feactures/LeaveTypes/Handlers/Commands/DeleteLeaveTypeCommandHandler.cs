@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using MG.LeaveManagement.Application.Exceptions;
 using MG.LeaveManagement.Application.Feactures.LeaveTypes.Requests.Commands;
 using MG.LeaveManagement.Application.Persistence.Contracts;
+using MG.LeaveManagement.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +34,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveTypes.Handlers.Commands
 
 
             if (leaveType == null)
-                throw new Exception();
+                throw new NotFoundException(nameof(LeaveType), request.Id);
 
             await _leaveTypeRepository.Delete(leaveType);
 

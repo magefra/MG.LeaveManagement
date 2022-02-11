@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using MG.LeaveManagement.Application.Exceptions;
 using MG.LeaveManagement.Application.Feactures.LeaveAllocations.Request.Commands;
 using MG.LeaveManagement.Application.Persistence.Contracts;
+using MG.LeaveManagement.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Handlers.Com
             var leaveType = await _leaveAllocationRepository.Get(request.Id);
 
             if (leaveType == null)
-                throw new Exception();
+                throw new NotFoundException(nameof(LeaveAllocation), request.Id);
 
             await _leaveAllocationRepository.Delete(leaveType);
 

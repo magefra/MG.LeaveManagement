@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MG.LeaveManagement.Application.Dtos.LeaveType.Validators;
+using MG.LeaveManagement.Application.Exceptions;
 using MG.LeaveManagement.Application.Feactures.LeaveTypes.Requests.Commands;
 using MG.LeaveManagement.Application.Persistence.Contracts;
 using MG.LeaveManagement.Domain;
@@ -33,7 +34,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveTypes.Handlers.Commands
             var validationResult = await validator.ValidateAsync(request.LeaveTypeDto);
 
             if (validationResult.IsValid == false)
-                throw new Exception();
+                throw new ValidationException(validationResult);
 
 
             var leaveType = await  _leaveTypeRepository.Get(request.LeaveTypeDto.Id);

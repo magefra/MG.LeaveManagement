@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using MG.LeaveManagement.Application.Dtos.LeaveRequest.Validators;
+using MG.LeaveManagement.Application.Exceptions;
 using MG.LeaveManagement.Application.Persistence.Contracts;
 using MG.LeaveManagement.Domain;
 using System;
@@ -24,6 +26,16 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
 
         public async Task<int> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
+
+            var validator = new CreateLeaveRequestDtoValidators(_leaveTypeRepository);
+            var validatorResult = await validator.ValidateAsync(request.LeaveRequestDto);
+
+            if (!validatorResult.IsValid)
+            {
+                throw new ValidationException(validatorResult);
+            }
+
+
             var leaveType = _mapper.Map<LeaveRequest>(request.LeaveRequestDto);
 
             leaveType = await _leaveTypeRepository.Add(leaveType);
