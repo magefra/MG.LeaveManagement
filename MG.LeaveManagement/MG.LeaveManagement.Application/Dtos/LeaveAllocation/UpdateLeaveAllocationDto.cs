@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MG.LeaveManagement.Application.Dtos.LeaveAllocation
 {
-    public class UpdateLeaveAllocationDto : BaseDto
+    public class UpdateLeaveAllocationDto : BaseDto 
     {
         public int NumerOfDays { get; set; }
 

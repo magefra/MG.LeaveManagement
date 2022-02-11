@@ -26,6 +26,9 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Handlers.Com
         {
             var leaveType = await _leaveAllocationRepository.Get(request.Id);
 
+            if (leaveType == null)
+                throw new Exception();
+
             await _leaveAllocationRepository.Delete(leaveType);
 
             return Unit.Value;
