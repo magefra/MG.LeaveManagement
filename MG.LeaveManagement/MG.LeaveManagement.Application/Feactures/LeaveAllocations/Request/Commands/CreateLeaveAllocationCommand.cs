@@ -11,5 +11,11 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Request.Comm
     public class CreateLeaveAllocationCommand : IRequest<int>
     {
         public CreateLeaveAllocationDto LeaveAllocationDto { get; set; }
+
+
     }
 }
+
+
+
+
