@@ -10,9 +10,9 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveRequest.Validators
 {
     public class UpdateLeaveRequestDtoValidator : AbstractValidator<UpdateLeaveRequestDto>
     {
-        private readonly ILeaveRequestRepository _leaveTypeRepository;
+        private readonly ILeaveTypeRepository _leaveTypeRepository;
 
-        public UpdateLeaveRequestDtoValidator(ILeaveRequestRepository leaveTypeRepository)
+        public UpdateLeaveRequestDtoValidator(ILeaveTypeRepository leaveTypeRepository)
         {
             _leaveTypeRepository = leaveTypeRepository;
            

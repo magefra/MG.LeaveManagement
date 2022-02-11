@@ -13,18 +13,20 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
     public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveRequestCommand, BaseCommandResponse>
     {
         private readonly ILeaveRequestRepository _leaveTypeRepository;
+        private readonly ILeaveTypeRepository leaveTypeRepository1;
         private readonly IMapper _mapper;
 
-        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveTypeRepository, IMapper mapper)
+        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveTypeRepository, ILeaveTypeRepository leaveTypeRepository1, IMapper mapper)
         {
             _leaveTypeRepository = leaveTypeRepository;
+            this.leaveTypeRepository1 = leaveTypeRepository1;
             _mapper = mapper;
         }
 
         public async Task<BaseCommandResponse> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
-            var validator = new CreateLeaveRequestDtoValidators(_leaveTypeRepository);
+            var validator = new CreateLeaveRequestDtoValidators(leaveTypeRepository1);
             var validatorResult = await validator.ValidateAsync(request.LeaveRequestDto);
 
             if (!validatorResult.IsValid)

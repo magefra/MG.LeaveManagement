@@ -11,12 +11,15 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
     public class UpdateLeaveRequestCommandHandler : IRequestHandler<UpdateLeaveRequestCommand, Unit>
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
+        private readonly ILeaveTypeRepository leaveTypeRepository;
         private readonly IMapper _mapper;
 
         public UpdateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository,
+            ILeaveTypeRepository leaveTypeRepository,
             IMapper mapper)
         {
             _leaveRequestRepository = leaveRequestRepository;
+            this.leaveTypeRepository = leaveTypeRepository;
             _mapper = mapper;
         }
 
@@ -26,7 +29,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
 
             if (request.LeaveRequestDto != null)
             {
-                var validator = new UpdateLeaveRequestDtoValidator(_leaveRequestRepository);
+                var validator = new UpdateLeaveRequestDtoValidator(leaveTypeRepository);
                 var validationResult = await validator.ValidateAsync(request.LeaveRequestDto);
                 if (validationResult.IsValid == false)
                     throw new ValidationException(validationResult);

@@ -10,7 +10,7 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveRequest.Validators
 {
     public class CreateLeaveRequestDtoValidators : AbstractValidator<CreateLeaveRequestDto>
     {
-        public CreateLeaveRequestDtoValidators(ILeaveRequestRepository leaveTypeRepository)
+        public CreateLeaveRequestDtoValidators(ILeaveTypeRepository leaveTypeRepository)
         {
             RuleFor(p => p.StartDate)
                 .LessThan(p => p.EndDate).WithMessage("{PropertyName} must be before {ComparisonValue");
