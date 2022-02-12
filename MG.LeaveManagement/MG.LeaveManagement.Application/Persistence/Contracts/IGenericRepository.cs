@@ -14,7 +14,7 @@ namespace MG.LeaveManagement.Application.Persistence.Contracts
 
         Task<T> Add(T entity);
 
-        Task<T> Update(T entity);
+        Task Update(T entity);
 
         Task<bool> Exists(int id);
 
