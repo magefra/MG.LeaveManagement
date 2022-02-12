@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using MG.LeaveManagement.Application.Contracts.Infraestructure;
 using MG.LeaveManagement.Application.Contracts.Persistence;
 using MG.LeaveManagement.Application.Dtos.LeaveRequest.Validators;
+using MG.LeaveManagement.Application.Models;
 using MG.LeaveManagement.Application.Responses;
 using MG.LeaveManagement.Domain;
 using System.Linq;
@@ -14,12 +16,17 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
     {
         private readonly ILeaveRequestRepository _leaveTypeRepository;
         private readonly ILeaveTypeRepository leaveTypeRepository1;
+        private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
 
-        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveTypeRepository, ILeaveTypeRepository leaveTypeRepository1, IMapper mapper)
+        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveTypeRepository,
+            ILeaveTypeRepository leaveTypeRepository1,
+            IEmailSender emailSender,
+            IMapper mapper)
         {
             _leaveTypeRepository = leaveTypeRepository;
             this.leaveTypeRepository1 = leaveTypeRepository1;
+            _emailSender = emailSender;
             _mapper = mapper;
         }
 
@@ -45,6 +52,26 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
             response.Success = true;
             response.Message = "Creation Successful";
             response.Id = leaveType.Id;
+
+
+            var email = new Email
+            {
+                To = "magefra9@hotmail.com",
+                Body = $"Your leave request for {request.LeaveRequestDto.StartDate:D} to {request.LeaveRequestDto.EndDate:D} " +
+                        $"has been submitted successfully.",
+                Subject = "Leave Request Submitted"
+            };
+
+            try
+            {
+                await _emailSender.SendEmail(email);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+
 
             return response;
         }
