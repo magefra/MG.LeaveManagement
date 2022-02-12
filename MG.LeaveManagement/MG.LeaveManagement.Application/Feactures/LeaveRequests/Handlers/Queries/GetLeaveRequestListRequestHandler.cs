@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using MG.LeaveManagement.Application.Contracts.Persistence;
 using MG.LeaveManagement.Application.Dtos.LeaveRequest;
 using MG.LeaveManagement.Application.Feactures.LeaveRequests.Request.Queries;
-using MG.LeaveManagement.Application.Persistence.Contracts;
 using MG.LeaveManagement.Domain;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

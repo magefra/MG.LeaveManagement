@@ -1,18 +1,12 @@
 ﻿using FluentValidation;
-using MG.LeaveManagement.Application.Persistence.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MG.LeaveManagement.Application.Dtos.LeaveRequest.Validators
 {
     public class ILeaveRequestDtoValidator : AbstractValidator<ILeaveRequestDto>
     {
-        private readonly MG.LeaveManagement.Application.Persistence.Contracts.ILeaveTypeRepository _leaveTypeRepository;
+        private readonly MG.LeaveManagement.Application.Contracts.Persistence.ILeaveTypeRepository _leaveTypeRepository;
 
-        public ILeaveRequestDtoValidator(MG.LeaveManagement.Application.Persistence.Contracts.ILeaveTypeRepository leaveTypeRepository)
+        public ILeaveRequestDtoValidator(MG.LeaveManagement.Application.Contracts.Persistence.ILeaveTypeRepository leaveTypeRepository)
         {
             _leaveTypeRepository = leaveTypeRepository;
             RuleFor(p => p.StartDate)

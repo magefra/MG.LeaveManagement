@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MG.LeaveManagement.Application.Persistence.Contracts
+namespace MG.LeaveManagement.Application.Contracts.Persistence
 {
     public interface IGenericRepository<T> where T : class
     {

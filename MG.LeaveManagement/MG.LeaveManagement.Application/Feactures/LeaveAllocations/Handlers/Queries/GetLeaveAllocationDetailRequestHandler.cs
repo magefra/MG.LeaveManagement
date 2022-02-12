@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
+using MG.LeaveManagement.Application.Contracts.Persistence;
 using MG.LeaveManagement.Application.Dtos.LeaveAllocation.Request.Queries;
-using MG.LeaveManagement.Application.Persistence.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

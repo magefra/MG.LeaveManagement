@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using MG.LeaveManagement.Application.Contracts.Persistence;
 using MG.LeaveManagement.Application.Dtos.LeaveRequest.Validators;
-using MG.LeaveManagement.Application.Persistence.Contracts;
 using MG.LeaveManagement.Application.Responses;
 using MG.LeaveManagement.Domain;
 using System.Linq;
