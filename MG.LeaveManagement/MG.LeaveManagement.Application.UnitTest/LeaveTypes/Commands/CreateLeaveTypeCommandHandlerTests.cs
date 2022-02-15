@@ -47,26 +47,26 @@ namespace MG.LeaveManagement.Application.UnitTest.LeaveTypes.Commands
         {
             var result = await _handler.Handle(new CreateLeaveTypeCommand() { LeaveTypeDto = _leaveTypeDto }, CancellationToken.None);
 
-        //    var leaveTypes = await _mockUow.Object.LeaveTypeRepository.GetAll();
+            //var leaveTypes = await _leaveTypeDto.GetAll();
 
-        //    result.ShouldBeOfType<BaseCommandResponse>();
+            //  result.ShouldBeOfType<BaseCommandResponse>();
 
-        //    leaveTypes.Count.ShouldBe(4);
+            //    leaveTypes.Count.ShouldBe(4);
         }
 
-        //[Fact]
-        //public async Task InValid_LeaveType_Added()
-        ////{
-        ////    _leaveTypeDto.DefaultDays = -1;
+        [Fact]
+        public async Task InValid_LeaveType_Added()
+        {
+            //    _leaveTypeDto.DefaultDays = -1;
 
-        ////    var result = await _handler.Handle(new CreateLeaveTypeCommand() { LeaveTypeDto = _leaveTypeDto }, CancellationToken.None);
+            //    var result = await _handler.Handle(new CreateLeaveTypeCommand() { LeaveTypeDto = _leaveTypeDto }, CancellationToken.None);
 
-        ////    var leaveTypes = await _mockUow.Object.LeaveTypeRepository.GetAll();
+            //    var leaveTypes = await _mockUow.Object.LeaveTypeRepository.GetAll();
 
-        ////    leaveTypes.Count.ShouldBe(3);
+            //    leaveTypes.Count.ShouldBe(3);
 
-        ////    result.ShouldBeOfType<BaseCommandResponse>();
+            //    result.ShouldBeOfType<BaseCommandResponse>();
 
-        //}
+        }
     }
 }
