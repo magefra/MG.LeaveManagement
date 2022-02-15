@@ -57,9 +57,9 @@ namespace MG.LeaveManagement.Application.UnitTest.LeaveTypes.Commands
         [Fact]
         public async Task InValid_LeaveType_Added()
         {
-            //    _leaveTypeDto.DefaultDays = -1;
+            _leaveTypeDto.DefaultDays = -1;
 
-            //    var result = await _handler.Handle(new CreateLeaveTypeCommand() { LeaveTypeDto = _leaveTypeDto }, CancellationToken.None);
+            var result = await _handler.Handle(new CreateLeaveTypeCommand() { LeaveTypeDto = _leaveTypeDto }, CancellationToken.None);
 
             //    var leaveTypes = await _mockUow.Object.LeaveTypeRepository.GetAll();
 
