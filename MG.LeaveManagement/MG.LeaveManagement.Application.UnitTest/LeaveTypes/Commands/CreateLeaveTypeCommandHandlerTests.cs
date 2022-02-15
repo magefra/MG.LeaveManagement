@@ -35,11 +35,11 @@ namespace MG.LeaveManagement.Application.UnitTest.LeaveTypes.Commands
             _mapper = mapperConfig.CreateMapper();
             //_handler = new CreateLeaveTypeCommandHandler(_mockUow.Object, _mapper);
 
-            //_leaveTypeDto = new CreateLeaveTypeDto
-            //{
-            //    DefaultDays = 15,
-            //    Name = "Test DTO"
-            //};
+            _leaveTypeDto = new CreateLeaveTypeDto
+            {
+                DefaultDays = 15,
+                Name = "Test DTO"
+            };
         }
 
         [Fact]
