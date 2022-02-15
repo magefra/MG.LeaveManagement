@@ -33,7 +33,7 @@ namespace MG.LeaveManagement.Application.UnitTest.LeaveTypes.Commands
             });
 
             _mapper = mapperConfig.CreateMapper();
-            //_handler = new CreateLeaveTypeCommandHandler(_mockUow.Object, _mapper);
+            _handler = new CreateLeaveTypeCommandHandler(_mockRepo.Object, _mapper);
 
             _leaveTypeDto = new CreateLeaveTypeDto
             {
