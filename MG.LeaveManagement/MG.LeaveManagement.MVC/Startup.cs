@@ -25,7 +25,7 @@ namespace MG.LeaveManagement.MVC
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:44327"));
+            services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:44398"));
 
             services.AddControllersWithViews();
         }
