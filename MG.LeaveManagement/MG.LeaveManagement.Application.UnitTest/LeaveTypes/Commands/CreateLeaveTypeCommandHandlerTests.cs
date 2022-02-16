@@ -61,7 +61,7 @@ namespace MG.LeaveManagement.Application.UnitTest.LeaveTypes.Commands
 
             var result = await _handler.Handle(new CreateLeaveTypeCommand() { LeaveTypeDto = _leaveTypeDto }, CancellationToken.None);
 
-            //    var leaveTypes = await _mockUow.Object.LeaveTypeRepository.GetAll();
+             //var leaveTypes = await _mockUow.Object.LeaveTypeRepository.GetAll();
 
             //    leaveTypes.Count.ShouldBe(3);
 
