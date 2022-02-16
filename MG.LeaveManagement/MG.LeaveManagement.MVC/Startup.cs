@@ -1,3 +1,4 @@
+using MG.LeaveManagement.MVC.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,7 +25,7 @@ namespace MG.LeaveManagement.MVC
         public void ConfigureServices(IServiceCollection services)
         {
 
-
+            services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:44327"));
 
             services.AddControllersWithViews();
         }
