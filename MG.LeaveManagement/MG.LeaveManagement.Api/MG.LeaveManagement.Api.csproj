@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -17,10 +17,6 @@
     <ProjectReference Include="..\MG.LeaveManagement.Application\MG.LeaveManagement.Application.csproj" />
     <ProjectReference Include="..\MG.LeaveManagement.Infraestructure\MG.LeaveManagement.Infraestructure.csproj" />
     <ProjectReference Include="..\MG.LeaveManagement.Persistence\MG.LeaveManagement.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
