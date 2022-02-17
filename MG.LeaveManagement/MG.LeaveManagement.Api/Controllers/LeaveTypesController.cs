@@ -4,6 +4,7 @@ using MG.LeaveManagement.Application.Dtos.LeaveType;
 using MG.LeaveManagement.Application.Feactures.LeaveRequests.Request.Queries;
 using MG.LeaveManagement.Application.Feactures.LeaveTypes.Requests.Commands;
 using MG.LeaveManagement.Application.Feactures.LeaveTypes.Requests.Queries;
+using MG.LeaveManagement.Application.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace MG.LeaveManagement.Api.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> Post([FromBody] CreateLeaveTypeDtp leaveType)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateLeaveTypeDtp leaveType)
         {
             var command = new CreateLeaveTypeCommand { LeaveTypeDto = leaveType };
             var response = await _mediator.Send(command);
