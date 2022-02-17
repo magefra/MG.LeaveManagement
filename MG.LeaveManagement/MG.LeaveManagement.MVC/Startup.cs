@@ -32,6 +32,8 @@ namespace MG.LeaveManagement.MVC
 
             services.AddScoped<IleaveTypeService, LeaveTypeSevice>();
 
+            services.AddSingleton<ILocalStorageService, LocalStorageService>();
+
             services.AddControllersWithViews();
         }
 

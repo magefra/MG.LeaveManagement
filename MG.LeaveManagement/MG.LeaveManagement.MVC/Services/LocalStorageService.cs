@@ -14,7 +14,7 @@ namespace MG.LeaveManagement.MVC.Services
             {
                 AutoLoad = true,
                 AutoSave = true,
-                Filename = "HR.LEAVEMGMT"
+                Filename = "MG.LEAVEMGMT"
             };
             _storage = new LocalStorage(config);
         }
