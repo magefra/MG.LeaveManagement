@@ -1,3 +1,4 @@
+using MG.LeaveManagement.MVC.Contracts;
 using MG.LeaveManagement.MVC.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MG.LeaveManagement.MVC
@@ -26,6 +28,9 @@ namespace MG.LeaveManagement.MVC
         {
 
             services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:44398"));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddScoped<IleaveTypeService, LeaveTypeSevice>();
 
             services.AddControllersWithViews();
         }

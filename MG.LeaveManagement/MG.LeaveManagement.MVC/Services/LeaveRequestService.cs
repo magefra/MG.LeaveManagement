@@ -1,6 +1,8 @@
-﻿namespace MG.LeaveManagement.MVC.Services
+﻿using MG.LeaveManagement.MVC.Contracts;
+
+namespace MG.LeaveManagement.MVC.Services
 {
-    public class LeaveRequestService
+    public class LeaveRequestService : ILeaveRequestService
     {
     }
 }
