@@ -73,7 +73,7 @@ namespace MG.LeaveManagement.MVC.Services
 
         public async Task<List<LeaveTypeVM>> GetLeaveTypes()
         {
-            AddBearerToken();
+            
             var leaveTypes = await _client.LeaveTypesAllAsync();
             return _mapper.Map<List<LeaveTypeVM>>(leaveTypes);
         }

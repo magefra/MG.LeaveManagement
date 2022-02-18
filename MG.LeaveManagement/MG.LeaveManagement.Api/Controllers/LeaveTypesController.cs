@@ -29,7 +29,7 @@ namespace MG.LeaveManagement.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<LeaveTypeDto>>> Get()
         {
-            var leaveTypes = await _mediator.Send(new GetLeaveRequestListRequest());
+            var leaveTypes = await _mediator.Send(new GetLeaveTypesListRequest());
             return Ok(leaveTypes);
         }
 
