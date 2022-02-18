@@ -29,7 +29,8 @@ namespace MG.LeaveManagement.MVC.Controllers
         // GET: LeaveTypesController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var model = await _ileaveTypeService.GetLeaveTypeDetails(id);
+            return View(model);
         }
 
         // GET: LeaveTypesController/Create
@@ -66,22 +67,34 @@ namespace MG.LeaveManagement.MVC.Controllers
         // GET: LeaveTypesController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            return View();
+
+            var model = await _ileaveTypeService.GetLeaveTypeDetails(id);
+            return View(model);
         }
 
         // POST: LeaveTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, LeaveTypeVM leave)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _ileaveTypeService.UpdateLeaveType(id, leave);
+
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError("", response.ValidationErrors);
+
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
             }
+
+            return View();
         }
 
         // GET: LeaveTypesController/Delete/5
