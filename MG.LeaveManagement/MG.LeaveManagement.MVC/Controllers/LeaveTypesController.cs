@@ -97,11 +97,7 @@ namespace MG.LeaveManagement.MVC.Controllers
             return View();
         }
 
-        // GET: LeaveTypesController/Delete/5
-        public async Task<ActionResult> Delete(int id)
-        {
-            return View();
-        }
+      
 
         // POST: LeaveTypesController/Delete/5
         [HttpPost]
@@ -110,12 +106,20 @@ namespace MG.LeaveManagement.MVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _ileaveTypeService.DeleteLeaveType(id);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError("", response.ValidationErrors);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
             }
+
+            return View();
         }
     }
 }
