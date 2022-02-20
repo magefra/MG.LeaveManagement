@@ -29,7 +29,7 @@ Sistema de Gestión de Licencias.
 
 
 ## Comenzando 🚀
-El proyecto utiliza la arquictectura DDD.
+El proyecto utiliza la arquictectura Hexagonal.
 
 * API (.Net 5)
 * Core ( Applcation y Domain)
