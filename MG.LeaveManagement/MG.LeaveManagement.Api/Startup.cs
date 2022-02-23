@@ -29,11 +29,7 @@ namespace MG.LeaveManagement.Api
             AddSwaggerDoc(services);
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MG.LeaveManagement.Api", Version = "v1" });
-            });
-
+        
             services.ConfigureApplicationServices();
             services.ConfigureInfrastructureServices(Configuration);
             services.ConfigurePersistenceServices(Configuration);

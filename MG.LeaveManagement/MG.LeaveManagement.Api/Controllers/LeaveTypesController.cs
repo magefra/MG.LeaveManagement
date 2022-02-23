@@ -5,6 +5,7 @@ using MG.LeaveManagement.Application.Feactures.LeaveRequests.Request.Queries;
 using MG.LeaveManagement.Application.Feactures.LeaveTypes.Requests.Commands;
 using MG.LeaveManagement.Application.Feactures.LeaveTypes.Requests.Queries;
 using MG.LeaveManagement.Application.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace MG.LeaveManagement.Api.Controllers
 
         // GET: api/<LeaveTypesController>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<LeaveTypeDto>>> Get()
         {
             var leaveTypes = await _mediator.Send(new GetLeaveTypesListRequest());
