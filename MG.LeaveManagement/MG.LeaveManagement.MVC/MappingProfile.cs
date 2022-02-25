@@ -10,6 +10,7 @@ namespace MG.LeaveManagement.MVC
         {
             CreateMap<CreateLeaveTypeDtp, CreateLeaveTypeVM>().ReverseMap();
             CreateMap<LeaveTypeDto, LeaveTypeVM>().ReverseMap();
+            CreateMap<RegisterVM, RegistrationRequest>().ReverseMap();
         }
     }
 }
