@@ -1,7 +1,9 @@
 using MG.LeaveManagement.MVC.Contracts;
 using MG.LeaveManagement.MVC.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,13 +29,29 @@ namespace MG.LeaveManagement.MVC
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddHttpContextAccessor();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/users/login");
+            });
+
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+
             services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("https://localhost:44398"));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IleaveTypeService, LeaveTypeSevice>();
+            services.AddScoped<ILeaveAllocationService, LeaveAllocationService>();
+            services.AddScoped<ILeaveRequestService, LeaveRequestService>();
 
             services.AddSingleton<ILocalStorageService, LocalStorageService>();
-
             services.AddControllersWithViews();
         }
 
@@ -50,6 +68,11 @@ namespace MG.LeaveManagement.MVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
