@@ -1,5 +1,6 @@
 ﻿using MG.LeaveManagement.MVC.Contracts;
 using MG.LeaveManagement.MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MG.LeaveManagement.MVC.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
         private readonly IleaveTypeService _ileaveTypeService;
