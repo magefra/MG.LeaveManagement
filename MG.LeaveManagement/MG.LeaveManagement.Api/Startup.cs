@@ -25,7 +25,7 @@ namespace MG.LeaveManagement.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-
+            services.AddHttpContextAccessor();
             AddSwaggerDoc(services);
 
             services.AddControllers();
