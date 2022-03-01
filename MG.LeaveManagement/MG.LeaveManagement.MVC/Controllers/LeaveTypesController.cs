@@ -13,10 +13,13 @@ namespace MG.LeaveManagement.MVC.Controllers
     {
         private readonly IleaveTypeService _ileaveTypeService;
 
+        private readonly ILeaveAllocationService _leaveAllocationService;
 
-        public LeaveTypesController(IleaveTypeService ileaveTypeService)
+
+        public LeaveTypesController(IleaveTypeService ileaveTypeService, ILeaveAllocationService leaveAllocationService)
         {
             _ileaveTypeService = ileaveTypeService;
+            this._leaveAllocationService = leaveAllocationService;
         }
 
 
@@ -122,6 +125,26 @@ namespace MG.LeaveManagement.MVC.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Allocate(int id)
+        {
+            try
+            {
+                var response = await _leaveAllocationService.CreateLeaveAllocations(id);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+
+            return BadRequest();
         }
     }
 }
