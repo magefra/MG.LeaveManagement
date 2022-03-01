@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MG.LeaveManagement.Application.Models.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace MG.LeaveManagement.Application.Contracts.Identity
 {
     public interface IUserService
     {
+        Task<List<Employee>> GetEmployees();
     }
 }
