@@ -1,4 +1,5 @@
 ﻿using MG.LeaveManagement.Application.Dtos.Common;
+using MG.LeaveManagement.Application.Models.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveAllocation
     {
         public int NumberOfDays { get; set; }
         public LeaveTypeDto LeaveType { get; set; }
+        public Employee Employee { get; set; }
         public string EmployeeId { get; set; }
         public int LeaveTypeId { get; set; }
         public int Period { get; set; }
