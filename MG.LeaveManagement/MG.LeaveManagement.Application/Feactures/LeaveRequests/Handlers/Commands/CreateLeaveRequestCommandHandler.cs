@@ -23,11 +23,13 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
         private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILeaveAllocationRepository _leaveAllocationRepository;
 
         public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveTypeRepository,
             ILeaveTypeRepository leaveTypeRepository1,
             IEmailSender emailSender,
             IHttpContextAccessor httpContextAccessor,
+            ILeaveAllocationRepository leaveAllocationRepository,
             IMapper mapper)
         {
             _leaveRequestRepository = leaveTypeRepository;
@@ -35,6 +37,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
             _emailSender = emailSender;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
+            _leaveAllocationRepository = leaveAllocationRepository;
         }
 
         public async Task<BaseCommandResponse> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
@@ -44,6 +47,25 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
             var validationResult = await validator.ValidateAsync(request.LeaveRequestDto);
             var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(
                    q => q.Type == CustomClaimTypes.Uid)?.Value;
+
+
+
+            var allocation = await _leaveAllocationRepository.GetUserAllocations(userId, request.LeaveRequestDto.LeaveTypeId);
+            if (allocation is null)
+            {
+                validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(nameof(request.LeaveRequestDto.LeaveTypeId),
+                    "You do not have any allocations for this leave type."));
+            }
+            else
+            {
+                int daysRequested = (int)(request.LeaveRequestDto.EndDate - request.LeaveRequestDto.StartDate).TotalDays;
+                if (daysRequested > allocation.NumberOfDays)
+                {
+                    validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(
+                        nameof(request.LeaveRequestDto.EndDate), "You do not have enough days for this request"));
+                }
+            }
+
 
 
             if (validationResult.IsValid == false)

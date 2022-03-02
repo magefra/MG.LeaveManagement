@@ -1,4 +1,5 @@
 ﻿using MG.LeaveManagement.Application.Dtos.Common;
+using MG.LeaveManagement.Application.Models.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace MG.LeaveManagement.Application.Dtos.LeaveRequest
 {
     public class LeaveRequestListDto : BaseDto
     {
+        public Employee Employee { get; set; }
         public string RequestingEmployeeId { get; set; }
         public LeaveTypeDto LeaveType { get; set; }
         public DateTime DateRequested { get; set; }
