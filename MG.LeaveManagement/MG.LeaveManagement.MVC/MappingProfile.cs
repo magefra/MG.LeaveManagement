@@ -23,7 +23,7 @@ namespace MG.LeaveManagement.MVC
             CreateMap<LeaveTypeDto, LeaveTypeVM>().ReverseMap();
             CreateMap<LeaveAllocationDto, LeaveAllocationVM>().ReverseMap();
             CreateMap<RegisterVM, RegistrationRequest>().ReverseMap();
-            //CreateMap<EmployeeVM, Employee>().ReverseMap();
+            CreateMap<EmployeeVM, Employee>().ReverseMap();
         }
     }
 }
