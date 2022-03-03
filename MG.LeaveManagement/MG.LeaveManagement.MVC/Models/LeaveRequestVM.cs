@@ -20,6 +20,7 @@ namespace MG.LeaveManagement.MVC.Models
 
         public bool Cancelled { get; set; }
         public LeaveTypeVM LeaveType { get; set; }
+        public EmployeeVM Employee { get; set; }
 
     }
 
