@@ -11,23 +11,23 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Handlers.Com
 {
     public class DeleteLeaveAllocationCommandHandler : IRequestHandler<DeleteLeaveAllocationCommand>
     {
-        private readonly ILeaveAllocationRepository _leaveAllocationRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public DeleteLeaveAllocationCommandHandler(ILeaveAllocationRepository leaveAllocationRepository, IMapper mapper)
+        public DeleteLeaveAllocationCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _leaveAllocationRepository = leaveAllocationRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<Unit> Handle(DeleteLeaveAllocationCommand request, CancellationToken cancellationToken)
         {
-            var leaveType = await _leaveAllocationRepository.Get(request.Id);
+            var leaveType = await _unitOfWork.LeaveAllocationRepository.Get(request.Id);
 
             if (leaveType == null)
                 throw new NotFoundException(nameof(LeaveAllocation), request.Id);
 
-            await _leaveAllocationRepository.Delete(leaveType);
+            await _unitOfWork.LeaveAllocationRepository.Delete(leaveType);
 
             return Unit.Value;
         }
