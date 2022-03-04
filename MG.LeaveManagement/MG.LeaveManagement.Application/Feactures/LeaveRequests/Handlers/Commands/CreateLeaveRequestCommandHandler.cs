@@ -74,7 +74,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
                 var leaveRequest = _mapper.Map<LeaveRequest>(request.LeaveRequestDto);
                 leaveRequest.RequestingEmployeeId = userId;
                 leaveRequest = await _unitOfWork.LeaveRequestRepository.Add(leaveRequest);
-                //await _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 response.Success = true;
                 response.Message = "Request Created Successfully";

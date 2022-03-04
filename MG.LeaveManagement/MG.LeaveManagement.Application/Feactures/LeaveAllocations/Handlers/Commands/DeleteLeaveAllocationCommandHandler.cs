@@ -28,7 +28,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Handlers.Com
                 throw new NotFoundException(nameof(LeaveAllocation), request.Id);
 
             await _unitOfWork.LeaveAllocationRepository.Delete(leaveType);
-
+            await _unitOfWork.Save();
             return Unit.Value;
         }
     }

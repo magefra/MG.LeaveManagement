@@ -35,6 +35,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Handlers.Com
             _mapper.Map(request.LeaveAllocationDto, leaveAllocation);
 
             await _unitOfWork.LeaveAllocationRepository.Update(leaveAllocation);
+            await _unitOfWork.Save();
             return Unit.Value;
         }
     }

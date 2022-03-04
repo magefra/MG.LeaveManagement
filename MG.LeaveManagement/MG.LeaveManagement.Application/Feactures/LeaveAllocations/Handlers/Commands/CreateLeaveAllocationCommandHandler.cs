@@ -62,7 +62,8 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveAllocations.Handlers.Com
                 }
 
                 await _unitOfWork.LeaveAllocationRepository.AddAllocations(allocations);
-               
+                await _unitOfWork.Save();
+
                 response.Success = true;
                 response.Message = "Allocations Successful";
             }

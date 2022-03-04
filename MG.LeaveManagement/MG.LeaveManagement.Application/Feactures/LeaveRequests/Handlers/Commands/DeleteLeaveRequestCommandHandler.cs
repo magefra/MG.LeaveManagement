@@ -30,6 +30,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
                 throw new NotFoundException(nameof(LeaveRequest), request.Id);
 
             await _unitOfWork.LeaveRequestRepository.Delete(leaveRequest);
+            await _unitOfWork.Save();
 
             return Unit.Value;
         }
