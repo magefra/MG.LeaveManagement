@@ -38,7 +38,7 @@ El proyecto utiliza la arquictectura Hexagonal.
 * Test
 
 ## Capturas
-![projects_dependencies](docs/1)
+![projects_dependencies](docs/1.png)
 ![projects_dependencies](docs/2)
 ![projects_dependencies](docs/3)
 ![projects_dependencies](docs/4)
