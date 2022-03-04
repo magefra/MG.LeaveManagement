@@ -1,4 +1,5 @@
 using MG.LeaveManagement.MVC.Contracts;
+using MG.LeaveManagement.MVC.Middleware;
 using MG.LeaveManagement.MVC.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -77,6 +78,7 @@ namespace MG.LeaveManagement.MVC
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseMiddleware<RequestMiddleware>();
 
             app.UseAuthorization();
 

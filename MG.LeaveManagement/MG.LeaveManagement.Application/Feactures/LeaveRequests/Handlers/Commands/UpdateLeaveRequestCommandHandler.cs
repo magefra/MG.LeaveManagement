@@ -25,6 +25,9 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
         {
             var leaveRequest= await _unitOfWork.LeaveRequestRepository.Get(request.Id);
 
+            if (leaveRequest is null)
+                throw new NotFoundException(nameof(leaveRequest), request.Id);
+
             if (request.LeaveRequestDto != null)
             {
                 var validator = new UpdateLeaveRequestDtoValidator(_unitOfWork.LeaveTypeRepository);

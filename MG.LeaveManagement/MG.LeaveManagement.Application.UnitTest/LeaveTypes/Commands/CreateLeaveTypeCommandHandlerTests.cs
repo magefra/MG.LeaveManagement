@@ -25,21 +25,21 @@ namespace MG.LeaveManagement.Application.UnitTest.LeaveTypes.Commands
 
         public CreateLeaveTypeCommandHandlerTests()
         {
-            _mockRepo = MockLeaveTypeRepository.GetLeaveTypeRepository();
+            //_mockRepo = MockLeaveTypeRepository.GetLeaveTypeRepository();
 
-            var mapperConfig = new MapperConfiguration(c =>
-            {
-                c.AddProfile<MappingProfile>();
-            });
+            //var mapperConfig = new MapperConfiguration(c =>
+            //{
+            //    c.AddProfile<MappingProfile>();
+            //});
 
-            _mapper = mapperConfig.CreateMapper();
-            _handler = new CreateLeaveTypeCommandHandler(_mockRepo.Object, _mapper);
+            //_mapper = mapperConfig.CreateMapper();
+            //_handler = new CreateLeaveTypeCommandHandler(_mockRepo.Object, _mapper);
 
-            _leaveTypeDto = new CreateLeaveTypeDto
-            {
-                DefaultDays = 15,
-                Name = "Test DTO"
-            };
+            //_leaveTypeDto = new CreateLeaveTypeDto
+            //{
+            //    DefaultDays = 15,
+            //    Name = "Test DTO"
+            //};
         }
 
         [Fact]

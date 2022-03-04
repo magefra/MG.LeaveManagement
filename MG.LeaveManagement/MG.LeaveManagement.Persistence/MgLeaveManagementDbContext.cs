@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MG.LeaveManagement.Persistence
 {
-    public class MgLeaveManagementDbContext : DbContext
+    public class MgLeaveManagementDbContext : AuditableDbContext
     {
         public MgLeaveManagementDbContext(DbContextOptions<MgLeaveManagementDbContext> options): 
             base(options) 
@@ -24,20 +24,7 @@ namespace MG.LeaveManagement.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MgLeaveManagementDbContext).Assembly);
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            foreach(var entry in ChangeTracker.Entries<BaseDomainEntity>())
-            {
-                entry.Entity.LastModifiedDate = DateTime.Now;
-
-                if(entry.State == EntityState.Added)
-                {
-                    entry.Entity.DateCreated = DateTime.Now;
-                }
-            }
-
-            return base.SaveChangesAsync(cancellationToken);
-        }
+       
 
 
 

@@ -39,11 +39,9 @@ namespace MG.LeaveManagement.Persistence.Repositories
 
         public async Task Save()
         {
-            await _context.SaveChangesAsync();
+            var username = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
 
-            //var username = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
-
-            //await _context.SaveChangesAsync(username);
+            await _context.SaveChangesAsync(username);
         }
     }
 }

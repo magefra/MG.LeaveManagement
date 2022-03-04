@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using MG.LeaveManagement.Api.Middleware;
 
 namespace MG.LeaveManagement.Api
 {
@@ -54,6 +55,8 @@ namespace MG.LeaveManagement.Api
                 app.UseDeveloperExceptionPage();
                 
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseAuthentication();
 
