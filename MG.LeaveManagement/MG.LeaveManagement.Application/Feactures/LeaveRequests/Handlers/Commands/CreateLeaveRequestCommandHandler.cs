@@ -18,39 +18,34 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
 {
     public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveRequestCommand, BaseCommandResponse>
     {
-        private readonly ILeaveRequestRepository _leaveRequestRepository;
-        private readonly ILeaveTypeRepository leaveTypeRepository1;
+      
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ILeaveAllocationRepository _leaveAllocationRepository;
 
-        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveTypeRepository,
-            ILeaveTypeRepository leaveTypeRepository1,
+        public CreateLeaveRequestCommandHandler(IUnitOfWork unitOfWork,
             IEmailSender emailSender,
             IHttpContextAccessor httpContextAccessor,
-            ILeaveAllocationRepository leaveAllocationRepository,
             IMapper mapper)
         {
-            _leaveRequestRepository = leaveTypeRepository;
-            this.leaveTypeRepository1 = leaveTypeRepository1;
+            _unitOfWork = unitOfWork;
             _emailSender = emailSender;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
-            _leaveAllocationRepository = leaveAllocationRepository;
         }
 
         public async Task<BaseCommandResponse> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
-            var validator = new CreateLeaveRequestDtoValidators(leaveTypeRepository1);
+            var validator = new CreateLeaveRequestDtoValidators(_unitOfWork.LeaveTypeRepository);
             var validationResult = await validator.ValidateAsync(request.LeaveRequestDto);
             var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(
                    q => q.Type == CustomClaimTypes.Uid)?.Value;
 
 
 
-            var allocation = await _leaveAllocationRepository.GetUserAllocations(userId, request.LeaveRequestDto.LeaveTypeId);
+            var allocation = await _unitOfWork.LeaveAllocationRepository.GetUserAllocations(userId, request.LeaveRequestDto.LeaveTypeId);
             if (allocation is null)
             {
                 validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure(nameof(request.LeaveRequestDto.LeaveTypeId),
@@ -78,7 +73,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
             {
                 var leaveRequest = _mapper.Map<LeaveRequest>(request.LeaveRequestDto);
                 leaveRequest.RequestingEmployeeId = userId;
-                leaveRequest = await _leaveRequestRepository.Add(leaveRequest);
+                leaveRequest = await _unitOfWork.LeaveRequestRepository.Add(leaveRequest);
                 //await _unitOfWork.Save();
 
                 response.Success = true;
