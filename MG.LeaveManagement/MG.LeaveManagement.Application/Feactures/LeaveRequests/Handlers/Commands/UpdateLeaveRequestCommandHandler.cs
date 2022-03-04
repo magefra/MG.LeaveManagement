@@ -35,6 +35,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
 
 
                 await _unitOfWork.LeaveRequestRepository.Update(leaveRequest);
+                await _unitOfWork.Save();
             }
             else if(request.ChangeLeaveRequestApprovalDto != null)
             {
@@ -48,6 +49,7 @@ namespace MG.LeaveManagement.Application.Feactures.LeaveRequests.Handlers.Comman
                     allocation.NumberOfDays -= daysRequested;
 
                     await _unitOfWork.LeaveAllocationRepository.Update(allocation);
+                    await _unitOfWork.Save();
                 }
 
             }
